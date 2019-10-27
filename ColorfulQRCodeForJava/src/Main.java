@@ -1,12 +1,12 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+/**
+ * @Author ZXLee
+ * @Date  2019.10.27
+ * @Github https://github.com/SmileZXLee/ColorfulQRCodeForJava
+ **/
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class Main {
