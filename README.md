@@ -11,7 +11,7 @@ BufferedImage resImg1 = ZXColorfulQRCode.handleGradientQRCodeBlock(image1, leftT
 <img src="https://github.com/SmileZXLee/ColorfulQRCodeForJava/blob/master/DemoImgs/img1.png?raw=true"/>
 
 ### 生成一个每一行颜色不同的二维码
-* 参数为待处理的二维码图片与图片数组
+* 参数为待处理的二维码图片与颜色数组
 ```java
 BufferedImage resImg2 = ZXColorfulQRCode.handleGradientQRCodeRow(image2, colors);
 ```
@@ -19,7 +19,7 @@ BufferedImage resImg2 = ZXColorfulQRCode.handleGradientQRCodeRow(image2, colors)
 <img src="https://github.com/SmileZXLee/ColorfulQRCodeForJava/blob/master/DemoImgs/img2.png?raw=true"/>
 
 ### 生成一个每一列颜色不同的二维码
-* 参数为待处理的二维码图片与图片数组
+* 参数为待处理的二维码图片与颜色数组
 ```java
 BufferedImage resImg3 = ZXColorfulQRCode.handleGradientQRCodeColoum(image3, colors);
 ```
@@ -27,7 +27,7 @@ BufferedImage resImg3 = ZXColorfulQRCode.handleGradientQRCodeColoum(image3, colo
 <img src="https://github.com/SmileZXLee/ColorfulQRCodeForJava/blob/master/DemoImgs/img3.png?raw=true"/>
 
 ### 生成一个对角线颜色不同的二维码
-* 参数为待处理的二维码图片与图片数组
+* 参数为待处理的二维码图片与颜色数组
 ```java
 BufferedImage resImg4 = ZXColorfulQRCode.handleGradientQRCodeOblique(image4, colors);
 ```
@@ -35,7 +35,7 @@ BufferedImage resImg4 = ZXColorfulQRCode.handleGradientQRCodeOblique(image4, col
 <img src="https://github.com/SmileZXLee/ColorfulQRCodeForJava/blob/master/DemoImgs/img4.png?raw=true"/>
 
 ### 生成一个对角线颜色为渐变色的二维码
-* 参数为待处理的二维码图片与图片数组
+* 参数为待处理的二维码图片与颜色数组
 ```java
 Color[] gradientcolors = ZXColorfulQRCode.getGradientColor(Color.PINK,Color.BLUE,30);
 BufferedImage resImg5 = ZXColorfulQRCode.handleGradientQRCodeOblique(image5, gradientcolors);
