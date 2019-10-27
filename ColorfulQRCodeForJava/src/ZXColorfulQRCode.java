@@ -22,7 +22,7 @@ public class ZXColorfulQRCode {
                 if(red < 50 && green < 50 && blue < 50){
                     Color fillColor;
                     if(x < image.getWidth() / 2){
-                        if(y > image.getHeight() / 2){
+                        if(y < image.getHeight() / 2){
                             //左上
                             fillColor = leftTopColor;
                         }else{
@@ -31,7 +31,7 @@ public class ZXColorfulQRCode {
                         }
 
                     }else{
-                        if(y > image.getHeight() / 2){
+                        if(y < image.getHeight() / 2){
                             //右上
                             fillColor = rightTopColor;
                         }else{
