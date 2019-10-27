@@ -119,7 +119,41 @@ public class ZXColorfulQRCode {
                 if (red < 50 && green < 50 && blue < 50) {
                     int currentStep = 0;
                     for(int i = 0; i < colors.length; i++){
+
                         if((x + y) - ((i + 1) * 2.0 * image.getWidth()) / (colors.length)  < 0){
+                            currentStep  = i;
+                            break;
+                        }
+
+                    }
+                    Color currentColor;
+                    currentColor = colors[currentStep];
+
+                    image.setRGB(x,y,currentColor.getRGB());
+                }
+            }
+
+        }
+        return image;
+    }
+
+    /**
+     * 生成一个每一对角线颜色不同的二维码(反向)
+     * @param image 待处理的二维码
+     * @param colors 每一对角线的颜色
+     * @return 处理后的二维码
+     */
+    public static BufferedImage handleGradientQRCodeObliqueReverse(BufferedImage image, Color[] colors){
+        for (int y = 0; y < image.getHeight(); y++) {
+            for (int x = 0; x < image.getWidth(); x++) {
+                int clr = image.getRGB(x, y);
+                int red = (clr & 0x00ff0000) >> 16;
+                int green = (clr & 0x0000ff00) >> 8;
+                int blue = clr & 0x000000ff;
+                if (red < 50 && green < 50 && blue < 50) {
+                    int currentStep = 0;
+                    for(int i = 0; i < colors.length; i++){
+                        if((y - x) + ((i - 1) * 2.0 * image.getWidth()) / (colors.length)  > 0){
                             currentStep  = i;
                             break;
                         }
