@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class ZXColorfulQRCode {
     /**
@@ -62,6 +63,9 @@ public class ZXColorfulQRCode {
                 if (red < 50 && green < 50 && blue < 50) {
                     int step = image.getWidth() / colors.length;
                     int currentStep = y / step;
+                    if(currentStep >= colors.length){
+                        currentStep =  colors.length - 1;
+                    }
                     Color currentColor = colors[currentStep];
                     image.setRGB(x,y,currentColor.getRGB());
                 }
@@ -87,6 +91,9 @@ public class ZXColorfulQRCode {
                 if (red < 50 && green < 50 && blue < 50) {
                     int step = image.getWidth() / colors.length;
                     int currentStep = x / step;
+                    if(currentStep >= colors.length){
+                        currentStep =  colors.length - 1;
+                    }
                     Color currentColor = colors[currentStep];
                     image.setRGB(x,y,currentColor.getRGB());
                 }
@@ -110,19 +117,40 @@ public class ZXColorfulQRCode {
                 int green = (clr & 0x0000ff00) >> 8;
                 int blue = clr & 0x000000ff;
                 if (red < 50 && green < 50 && blue < 50) {
-                    int step = image.getWidth() / colors.length * 2;
-                    int currentStep = (int)((Math.abs(y - x) * 1.0) / step);
-                    Color currentColor;
-                    if(x > y){
-                        currentColor = colors[currentStep];
-                    }else{
-                        currentColor = colors[colors.length - currentStep - 1];
+                    int currentStep = 0;
+                    for(int i = 0; i < colors.length; i++){
+                        if((x + y) - ((i + 1) * 2.0 * image.getWidth()) / (colors.length)  < 0){
+                            currentStep  = i;
+                            break;
+                        }
                     }
+                    Color currentColor;
+                    currentColor = colors[currentStep];
+
                     image.setRGB(x,y,currentColor.getRGB());
                 }
             }
 
         }
         return image;
+    }
+
+
+    public static Color[] getGradientColor(Color fromColor, Color toColor, int step){
+        ArrayList<Color> colorList = new ArrayList<Color>();
+        int fromR = fromColor.getRed();
+        int fromG = fromColor.getGreen();
+        int fromB = fromColor.getBlue();
+        int toR = toColor.getRed();
+        int toG = toColor.getGreen();
+        int toB = toColor.getBlue();
+        for(int i = 0; i < step; i++){
+            int r = fromR + (toR - fromR) / step * i;
+            int g = fromG + (toG - fromG) / step * i;
+            int b = fromB + (toB - fromB) / step * i;
+            Color color = new Color(r,g,b);
+            colorList.add(color);
+        }
+        return colorList.toArray(new Color[step]);
     }
 }

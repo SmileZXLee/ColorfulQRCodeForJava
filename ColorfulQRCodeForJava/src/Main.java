@@ -3,16 +3,17 @@
 // (powered by Fernflower decompiler)
 //
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class Main {
     public static void main(String[] args) {
-        //读取图片的路径(测试的时候改成电脑中本地图片的路径)
+        //读取图片的路径(测试的时候必须改成电脑中本地二维码图片的路径)
         String imgPath = "/Users/lzx/Desktop/zxleecode.png";
-        //存储图片的路径(测试的时候改成电脑中需要存储的路径)
+        //存储图片的路径(测试的时候必须改成电脑中需要存储的路径)
         String savePath = "/Users/lzx/Desktop/zxleecodeResult/";
         try {
             Color leftTopColor = new Color(255, 0, 0);
@@ -42,8 +43,14 @@ public class Main {
             BufferedImage resImg4 = ZXColorfulQRCode.handleGradientQRCodeOblique(image4, colors);
             ImageIO.write(resImg4, "png", new File(savePath + "/img4.png"));
 
-        } catch (Exception var10) {
-            System.out.println("无法获取图片：" + imgPath + "或程序出现异常！");
+            //生成一个每一对角线颜色不同的渐变二维码
+            Color[] gradientcolors = ZXColorfulQRCode.getGradientColor(Color.PINK,Color.BLUE,30);
+            BufferedImage image5 = ImageIO.read(new File(imgPath));
+            BufferedImage resImg5 = ZXColorfulQRCode.handleGradientQRCodeOblique(image5, gradientcolors);
+            ImageIO.write(resImg5, "png", new File(savePath + "/img5.png"));
+
+        } catch (Exception e) {
+            System.out.println("无法获取图片：" + imgPath + "或程序出现异常！" + e);
         }
 
     }
