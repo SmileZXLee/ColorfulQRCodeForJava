@@ -19,6 +19,7 @@ public class ZXColorfulQRCode {
      * @return 处理后的二维码
      */
     public static BufferedImage handleGradientQRCodeBlock(BufferedImage image, Color leftTopColor, Color leftBottomColor, Color rightTopColor, Color rightBottomColor){
+        image = convertToARGB(image);
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
                 int  clr   = image.getRGB(x, y);
@@ -60,6 +61,7 @@ public class ZXColorfulQRCode {
      * @return 处理后的二维码
      */
     public static BufferedImage handleGradientQRCodeRow(BufferedImage image, Color[] colors){
+        image = convertToARGB(image);
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
                 int clr = image.getRGB(x, y);
@@ -88,6 +90,7 @@ public class ZXColorfulQRCode {
      * @return 处理后的二维码
      */
     public static BufferedImage handleGradientQRCodeColoum(BufferedImage image, Color[] colors){
+        image = convertToARGB(image);
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
                 int clr = image.getRGB(x, y);
@@ -116,6 +119,7 @@ public class ZXColorfulQRCode {
      * @return 处理后的二维码
      */
     public static BufferedImage handleGradientQRCodeOblique(BufferedImage image, Color[] colors){
+        image = convertToARGB(image);
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
                 int clr = image.getRGB(x, y);
@@ -150,6 +154,7 @@ public class ZXColorfulQRCode {
      * @return 处理后的二维码
      */
     public static BufferedImage handleGradientQRCodeObliqueReverse(BufferedImage image, Color[] colors){
+        image = convertToARGB(image);
         for (int y = 0; y < image.getHeight(); y++) {
             for (int x = 0; x < image.getWidth(); x++) {
                 int clr = image.getRGB(x, y);
@@ -192,5 +197,20 @@ public class ZXColorfulQRCode {
             colorList.add(color);
         }
         return colorList.toArray(new Color[step]);
+    }
+
+    private static BufferedImage convertToARGB(BufferedImage image) {
+
+        if (image.getType() == BufferedImage.TYPE_INT_ARGB) {
+            return image;
+        }
+
+        BufferedImage newImage = new BufferedImage(
+                image.getWidth(), image.getHeight(),
+                BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = newImage.createGraphics();
+        g.drawImage(image, 0, 0, null);
+        g.dispose();
+        return newImage;
     }
 }

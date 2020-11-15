@@ -49,9 +49,12 @@ public class Main {
             BufferedImage resImg5 = ZXColorfulQRCode.handleGradientQRCodeOblique(image5, gradientcolors);
             ImageIO.write(resImg5, "png", new File(savePath + "/img5.png"));
 
+            System.out.println("运行成功，图片已存储至：" + savePath);
+
         } catch (Exception e) {
             System.out.println("无法获取图片：" + imgPath + "或程序出现异常！" + e);
         }
+
 
     }
 }
